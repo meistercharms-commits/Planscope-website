@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planscope - Your Week, Planned</title>
+    <meta name="description" content="Stop drowning in to-do lists. Dump everything on your mind, let AI decide what matters, and get a realistic plan you'll actually finish.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2E8B6A;
+            --primary-dark: #236B52;
+            --primary-light: #E8F5F0;
+            --secondary: #4A90B0;
+            --accent: #E8943D;
+            --bg: #FFFFFF;
+            --bg-subtle: #FAFAF9;
+            --border: #E8E8E8;
+            --text: #404040;
+            --text-secondary: #808080;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: white;
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        h1 { font-size: clamp(36px, 5vw, 56px); line-height: 1.1; }
+        h2 { font-size: clamp(28px, 3.5vw, 40px); line-height: 1.2; }
+        h3 { font-size: 20px; }
+
+        p { font-size: 16px; color: var(--text-secondary); }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 200ms ease;
+        }
+        a:hover { color: var(--primary-dark); }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ─── Header ─── */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Geist', sans-serif;
+        }
+
+        .logo-mark {
+            width: 48px;
+            height: 48px;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 15px;
+            color: var(--text);
+            font-weight: 500;
+        }
+        nav a:hover { color: var(--primary); }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 200ms ease;
+        }
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            color: white !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .mobile-menu-btn span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text);
+            margin: 4px 0;
+            border-radius: 1px;
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            padding: 80px 0 64px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--primary-light) 0%, white 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        .hero-badge span { color: var(--primary); font-weight: 600; }
+
+        .hero h1 { margin-bottom: 16px; }
+        .hero h1 span { color: var(--primary); }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 12px;
+            margin-bottom: 56px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 200ms ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(46, 139, 106, 0.25);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--text);
+            border: 1.5px solid var(--border);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        /* App mockup */
+        .hero-mockup {
+            max-width: 720px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+
+        .mockup-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-subtle);
+        }
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .mockup-body {
+            padding: 32px;
+        }
+
+        .mockup-input {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .mockup-input p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .mockup-constraints {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .mockup-pill {
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text-secondary);
+        }
+        .mockup-pill.active {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .mockup-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: default;
+        }
+
+        .mockup-arrow {
+            text-align: center;
+            padding: 16px 0;
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .mockup-result {
+            text-align: left;
+        }
+        .mockup-result h4 {
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+        .mockup-task {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .mockup-task:last-child { border-bottom: none; }
+        .mockup-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .mockup-task-text {
+            font-size: 14px;
+            color: var(--text);
+        }
+        .mockup-task-context {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* ─── Sections ─── */
+        section { padding: 80px 0; }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 56px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ─── Features ─── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            padding: 28px;
+            background: var(--bg-subtle);
+            border-radius: 12px;
+            border: 1px solid transparent;
+            transition: all 250ms ease;
+        }
+        .feature-card:hover {
+            border-color: var(--border);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .feature-icon img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+        .feature-card p { font-size: 14px; line-height: 1.6; }
+
+        /* ─── How It Works ─── */
+        .how-it-works { background: var(--bg-subtle); }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .step {
+            padding: 28px 24px;
+            background: white;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Geist', sans-serif;
+            margin-bottom: 16px;
+        }
+
+        .step h3 { margin-bottom: 8px; font-size: 16px; }
+        .step p { font-size: 14px; line-height: 1.6; }
+
+        /* ─── Built For ─── */
+        .built-for { background: white; }
+
+        .built-for-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .persona-card {
+            padding: 28px;
+            background: var(--bg-subtle);
+            border-radius: 12px;
+            text-align: center;
+        }
+        .persona-icon {
+            margin-bottom: 12px;
+        }
+        .persona-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        .persona-card h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+        .persona-card p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ─── Pricing ─── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .pricing-card {
+            padding: 32px;
+            background: white;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            transition: all 200ms ease;
+        }
+        .pricing-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(46, 139, 106, 0.1);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(46, 139, 106, 0.12);
+        }
+
+        .pricing-badge {
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .pricing-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Geist', sans-serif;
+        }
+
+        .pricing-period {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        .pricing-features li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pricing-features li::before {
+            content: "";
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            flex-shrink: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%232E8B6A'%3E%3Cpath d='M6.5 11.5L3 8l1-1 2.5 2.5L11 5l1 1-5.5 5.5z'/%3E%3C/svg%3E");
+        }
+
+        .pricing-card .btn { width: 100%; text-align: center; }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* ─── CTA ─── */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 72px 0;
+        }
+        .cta-section h2 { color: white; margin-bottom: 12px; }
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 28px;
+            font-size: 17px;
+        }
+        .cta-section .btn {
+            background: white;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .cta-section .btn:hover {
+            background: var(--bg-subtle);
+            transform: translateY(-1px);
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            background: #2A2A2A;
+            color: white;
+            padding: 48px 0 32px;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.6);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        .footer-section a:hover { color: white; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            .hero { padding: 48px 0; }
+            .hero-cta { flex-direction: column; width: 100%; }
+            .hero-cta .btn { width: 100%; text-align: center; }
+
+            nav { display: none; }
+            .mobile-menu-btn { display: block; }
+
+            section { padding: 56px 0; }
+
+            .features-grid,
+            .built-for-grid,
+            .pricing-grid { grid-template-columns: 1fr; }
+
+            .steps-grid { grid-template-columns: 1fr 1fr; }
+
+            .footer-content { grid-template-columns: 1fr 1fr; }
+            .footer-bottom { flex-direction: column; gap: 8px; }
+
+            .mockup-constraints { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .steps-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="logo+wordmark_horizontal_primary.svg" alt="Planscope" style="height: 44px; width: auto;"/>
+        </div>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#how">How it works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#" class="nav-cta">Get Started Free</a>
+        </nav>
+        <button class="mobile-menu-btn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div style="margin-bottom: 48px; display: flex; justify-content: center;">
+            <img src="logo+wordmark_tagline_primary.svg" alt="Planscope - Planning Simplified" style="height: 80px; width: auto; max-width: 100%;"/>
+        </div>
+
+        <div class="hero-badge" style="margin-bottom: 48px;">
+            <span>New</span> – AI-powered weekly planning
+        </div>
+
+        <h1 style="margin-top: 32px;">Your week, <span>planned.</span></h1>
+        <p class="hero-subtitle">
+            Stop drowning in to-do lists. Dump everything on your mind, let AI decide what actually matters, and get a realistic plan you'll finish.
+        </p>
+
+        <div class="hero-cta">
+            <a href="#" class="btn btn-primary">Start Planning – It's Free</a>
+            <a href="#how" class="btn btn-outline">See How It Works</a>
+        </div>
+
+        <!-- App mockup -->
+        <div class="hero-mockup">
+            <div class="mockup-header">
+                <div class="mockup-dot"></div>
+                <div class="mockup-dot"></div>
+                <div class="mockup-dot"></div>
+            </div>
+            <div class="mockup-body">
+                <div class="mockup-input">
+                    <p>Finish Q2 proposal. Call client about scope change. Code review for team backend. Update project docs. Prep for 1:1s. Should really exercise this week. Need to sort out that invoice...</p>
+                </div>
+                <div class="mockup-constraints">
+                    <span class="mockup-pill active">Medium time</span>
+                    <span class="mockup-pill active">OK energy</span>
+                    <span class="mockup-pill active">Work focus</span>
+                </div>
+                <div class="mockup-btn">Make me a plan</div>
+                <div class="mockup-arrow">&darr;</div>
+                <div class="mockup-result">
+                    <h4>Your plan for this week</h4>
+                    <div class="mockup-task">
+                        <div class="mockup-check"></div>
+                        <div>
+                            <div class="mockup-task-text">Finish Q2 proposal</div>
+                            <div class="mockup-task-context">Highest urgency – deadline this week</div>
+                        </div>
+                    </div>
+                    <div class="mockup-task">
+                        <div class="mockup-check"></div>
+                        <div>
+                            <div class="mockup-task-text">Call client about scope change</div>
+                            <div class="mockup-task-context">Blocks other work – quick win</div>
+                        </div>
+                    </div>
+                    <div class="mockup-task">
+                        <div class="mockup-check"></div>
+                        <div>
+                            <div class="mockup-task-text">Code review for team backend</div>
+                            <div class="mockup-task-context">Team dependency – 30 min</div>
+                        </div>
+                    </div>
+                    <div class="mockup-task">
+                        <div class="mockup-check"></div>
+                        <div>
+                            <div class="mockup-task-text">Go for a run or walk</div>
+                            <div class="mockup-task-context">You mentioned exercise – even 20 min counts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section id="features">
+    <div class="container">
+        <h2>Planning that actually works</h2>
+        <p class="section-subtitle">
+            Built for overwhelmed people who want clarity, not another app to manage.
+        </p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><img src="brain_dump.svg" alt="Brain dump icon"/></div>
+                <h3>Brain dump, not setup</h3>
+                <p>No forms, no categories, no tagging. Just write everything on your mind. The AI does the organising.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><img src="star.svg" alt="Star icon"/></div>
+                <h3>AI picks what matters</h3>
+                <p>Scores tasks on urgency, effort, and realism. Picks 3&ndash;7 priorities that fit your actual time and energy.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><img src="parked.svg" alt="Parked icon"/></div>
+                <h3>Permission to park things</h3>
+                <p>See what you're not doing this week – with a reason why. Everything matters, just not right now.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><img src="lightning_bolt.svg" alt="Lightning bolt icon"/></div>
+                <h3>Realistic, not ambitious</h3>
+                <p>Plans match your available hours and energy level. A good plan that gets done beats a perfect plan that doesn't.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><img src="heart.svg" alt="Heart icon"/></div>
+                <h3>Burnout detection</h3>
+                <p>The AI reads between the lines. If you're overwhelmed, it says so – and adjusts your plan accordingly.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><img src="timer.svg" alt="Timer icon"/></div>
+                <h3>Two minutes to clarity</h3>
+                <p>Brain dump, set constraints, get a plan. No 30-minute setup. No onboarding. Just start.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-it-works" id="how">
+    <div class="container">
+        <h2>How it works</h2>
+        <p class="section-subtitle">
+            From overwhelm to clarity in four steps.
+        </p>
+
+        <div class="steps-grid">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Dump everything</h3>
+                <p>Write down everything swirling in your head. No structure needed. Just let it out.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Set your context</h3>
+                <p>Tell us your time, energy level, and focus area for the week. Takes 10 seconds.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Get your plan</h3>
+                <p>AI scores and prioritises your tasks. You get realistic priorities plus what you're parking.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Execute and track</h3>
+                <p>Check off tasks as you go. See your progress. Carry unfinished work to next week.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Built For -->
+<section class="built-for">
+    <div class="container">
+        <h2>Built for people like you</h2>
+        <p class="section-subtitle">
+            If you've ever stared at a to-do list and felt worse, Planscope is for you.
+        </p>
+
+        <div class="built-for-grid">
+            <div class="persona-card">
+                <div class="persona-icon"><img src="laptop.svg" alt="Laptop icon"/></div>
+                <h3>Knowledge workers</h3>
+                <p>Too many projects, too many meetings, not enough time. Planscope picks what actually moves the needle this week.</p>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-icon"><img src="easel.svg" alt="Easel icon"/></div>
+                <h3>Freelancers &amp; creators</h3>
+                <p>Client work, admin, personal projects – all competing. Get a plan that balances what matters with what pays.</p>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-icon"><img src="smart_thinking.svg" alt="Smart thinking icon"/></div>
+                <h3>Neurodivergent planners</h3>
+                <p>ADHD, anxiety, decision fatigue – traditional planners make it worse. Planscope removes the friction.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing">
+    <div class="container">
+        <h2>Simple pricing</h2>
+        <p class="section-subtitle">
+            Start free. Upgrade when you need more plans.
+        </p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-name">Free</div>
+                <div class="pricing-price">&pound;0</div>
+                <div class="pricing-period">Forever free</div>
+                <ul class="pricing-features">
+                    <li>4 plans per month</li>
+                    <li>AI-powered prioritisation</li>
+                    <li>Burnout detection</li>
+                    <li>Progress tracking</li>
+                </ul>
+                <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Get Started</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-badge">Recommended</div>
+                <div class="pricing-name">Pro</div>
+                <div class="pricing-price">&pound;2.99</div>
+                <div class="pricing-period">per month</div>
+                <ul class="pricing-features">
+                    <li>8 plans per month</li>
+                    <li>Everything in Free</li>
+                    <li>Plan history &amp; insights</li>
+                    <li>Recurring weekly plans</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Start Free Trial</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-badge" style="background: var(--secondary);">Power Users</div>
+                <div class="pricing-name">Pro Plus</div>
+                <div class="pricing-price">&pound;4.99</div>
+                <div class="pricing-period">per month</div>
+                <ul class="pricing-features">
+                    <li>Unlimited plans</li>
+                    <li>Everything in Pro</li>
+                    <li>Multiple active plans</li>
+                    <li>Named plan labels</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Start Free Trial</a>
+            </div>
+        </div>
+
+        <p class="pricing-note">All plans include a 14-day free trial. No credit card required.</p>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <h2>Ready to get your week back?</h2>
+        <p>Two minutes. One brain dump. A plan you'll actually finish.</p>
+        <a href="#" class="btn">Start Planning Free</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo" style="color: white; font-size: 20px; margin-bottom: 4px;">Planscope</div>
+                <p>Real plans for real people.<br>Built by someone who understands overwhelm.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="#features">Features</a>
+                <a href="#how">How it works</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="mailto:support@planscope.co">support@planscope.co</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Planscope. All rights reserved.</p>
+            <p>Made with care in the UK</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
