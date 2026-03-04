@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Planscope</title>
+    <meta name="description" content="Planscope Privacy Policy. Learn how we collect, use, and protect your data.">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #2E8B6A;
+            --primary-dark: #236B52;
+            --primary-light: #E8F5F0;
+            --bg: #FFFFFF;
+            --bg-subtle: #FAFAF9;
+            --border: #E8E8E8;
+            --text: #404040;
+            --text-secondary: #808080;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: white;
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        a { color: var(--primary); text-decoration: none; transition: color 200ms ease; }
+        a:hover { color: var(--primary-dark); }
+
+        .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+        /* ─── Header ─── */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Geist', sans-serif;
+        }
+
+        nav { display: flex; gap: 32px; align-items: center; }
+        nav a { font-size: 15px; color: var(--text); font-weight: 500; }
+        nav a:hover { color: var(--primary); }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 200ms ease;
+        }
+        .nav-cta:hover { background: var(--primary-dark); color: white !important; }
+
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .mobile-menu-btn span { display: block; width: 20px; height: 2px; background: var(--text); margin: 4px 0; border-radius: 1px; }
+
+        /* ─── Legal Content ─── */
+        .legal-hero {
+            background: linear-gradient(180deg, var(--primary-light) 0%, white 100%);
+            padding: 56px 0 40px;
+            text-align: center;
+        }
+        .legal-hero h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.2; margin-bottom: 8px; }
+        .legal-hero p { font-size: 15px; color: var(--text-secondary); }
+
+        .legal-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        .legal-content h2 {
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .legal-content h3 {
+            font-size: 17px;
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+
+        .legal-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .legal-content ul, .legal-content ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .legal-content li {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            line-height: 1.7;
+        }
+
+        .legal-content strong { color: var(--text); }
+
+        .legal-content hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 32px 0;
+        }
+
+        .legal-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        .legal-content table th,
+        .legal-content table td {
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            text-align: left;
+            color: var(--text-secondary);
+        }
+        .legal-content table th {
+            background: var(--bg-subtle);
+            color: var(--text);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            background: #2A2A2A;
+            color: white;
+            padding: 48px 0 32px;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p { color: rgba(255, 255, 255, 0.6); font-size: 14px; margin-top: 8px; line-height: 1.6; }
+
+        .footer-section h4 { color: white; font-size: 14px; margin-bottom: 16px; font-weight: 600; }
+        .footer-section a { color: rgba(255, 255, 255, 0.6); display: block; margin-bottom: 8px; font-size: 13px; }
+        .footer-section a:hover { color: white; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .mobile-menu-btn { display: block; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+            .footer-bottom { flex-direction: column; gap: 8px; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="logo+wordmark_horizontal_primary.svg" alt="Planscope" style="height: 44px; width: auto;"/>
+        </a>
+        <nav>
+            <a href="index.html#features">Features</a>
+            <a href="index.html#how">How it works</a>
+            <a href="index.html#pricing">Pricing</a>
+            <a href="#" class="nav-cta">Get Started Free</a>
+        </nav>
+        <button class="mobile-menu-btn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- Hero -->
+<div class="legal-hero">
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p>Effective 25 February 2025 &middot; Last updated 26 February 2025</p>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="legal-content">
+
+    <h2>1. Introduction</h2>
+    <p>Planscope ("we," "us," "our," or "Company") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our planning application ("Service"), including the web application, Progressive Web App (PWA), and native mobile applications for iOS and Android.</p>
+    <p>Please read this Privacy Policy carefully. If you do not agree with our policies and practices, please do not use our Service.</p>
+    <p><strong>Data Controller:</strong> Planscope, United Kingdom<br>
+    <strong>Privacy Contact:</strong> <a href="mailto:support@planscope.app">support@planscope.app</a></p>
+
+    <hr>
+
+    <h2>2. Information We Collect</h2>
+
+    <h3>2.1 Information You Provide Directly</h3>
+    <p><strong>Account Registration:</strong></p>
+    <ul>
+        <li>Email address</li>
+        <li>Password (hashed and encrypted)</li>
+        <li>Account creation date</li>
+    </ul>
+
+    <p><strong>When You Use Our Service:</strong></p>
+    <ul>
+        <li>Brain dumps (text you enter for planning)</li>
+        <li>Plans generated by our system</li>
+        <li>Task lists and completion status</li>
+        <li>Constraints you select (time availability, energy level, focus area)</li>
+        <li>Any edits or modifications you make to tasks</li>
+        <li>Multiple planning contexts (Work, Personal, Side Project, etc.)</li>
+        <li>Feedback or support requests</li>
+    </ul>
+
+    <p><strong>Team Sharing (Pro Plus feature):</strong></p>
+    <ul>
+        <li>Email addresses of team members you invite</li>
+        <li>Access levels and permissions for shared plans</li>
+        <li>Team member activity on shared plans</li>
+    </ul>
+
+    <p><strong>Push Notifications:</strong></p>
+    <ul>
+        <li>Notification preferences and settings</li>
+        <li>Device tokens for iOS and Android devices (for push notification delivery)</li>
+    </ul>
+
+    <p><strong>Payment Information (if applicable):</strong></p>
+    <ul>
+        <li>Billing email and name</li>
+        <li>Payment method information (processed securely through Stripe; we do not store full credit card details)</li>
+        <li>Subscription plan details (Free, Pro, Pro Plus)</li>
+        <li>Billing frequency (monthly or yearly)</li>
+        <li>Subscription status and renewal dates</li>
+        <li>Stripe Customer ID (used to link your account to your subscription)</li>
+    </ul>
+
+    <h3>2.2 Information Collected Automatically</h3>
+    <p><strong>Usage Data:</strong> IP address, browser type and version, operating system, pages or features you access, time and date of your visits, time spent on pages, and links you click.</p>
+    <p><strong>Device Information:</strong> Device type, device identifiers, mobile network information, operating system version, and app installation source.</p>
+    <p><strong>Cookies and Tracking Technologies:</strong> Session cookies, persistent cookies, and local storage for authentication tokens. We use cookies for authentication and remembering your preferences.</p>
+    <p>We do <strong>not</strong> use third-party analytics trackers, heatmaps, session recordings, or invasive tracking technologies.</p>
+
+    <h3>2.3 Information from Third Parties</h3>
+    <p>If you log in via OAuth (Google, Apple), we receive your email address and basic profile information. We also receive payment information from payment processors (Stripe) and aggregate usage data (never personally identifiable).</p>
+
+    <hr>
+
+    <h2>3. How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ol>
+        <li><strong>Provide and Improve the Service:</strong> Create and maintain your account, deliver planning features, debug and fix technical issues, and monitor performance.</li>
+        <li><strong>Generate AI Plans:</strong> Parse your brain dumps using Claude API, score and select tasks based on your constraints, and generate human-friendly descriptions. Your data is sent to Anthropic's API for LLM processing (see section 6).</li>
+        <li><strong>Team Collaboration (Pro Plus):</strong> Share plans with team members, manage access and permissions, and track activity.</li>
+        <li><strong>Push Notifications:</strong> Send plan-ready, daily check-in, and celebration notifications. Store device tokens and customise preferences per user.</li>
+        <li><strong>Customer Service:</strong> Respond to your enquiries and support requests, and send service-related announcements.</li>
+        <li><strong>Legal and Safety:</strong> Comply with applicable laws, protect against fraud, enforce our Terms of Use, and process refund requests.</li>
+        <li><strong>Aggregated Analytics:</strong> Measure feature usage, understand user behaviour patterns, and improve the product experience (non-personally identifiable).</li>
+    </ol>
+    <p>We <strong>do not</strong> use your information for marketing, advertising, or third-party sales.</p>
+
+    <hr>
+
+    <h2>4. Data Security</h2>
+
+    <h3>4.1 Security Measures</h3>
+    <ul>
+        <li><strong>Encryption in Transit:</strong> All data transmitted uses HTTPS (TLS 1.2+)</li>
+        <li><strong>Encryption at Rest:</strong> Sensitive data is encrypted in our database</li>
+        <li><strong>Password Security:</strong> Passwords are hashed using bcrypt with a high salt cost</li>
+        <li><strong>Access Controls:</strong> Only authorised employees can access data, on a need-to-know basis</li>
+        <li><strong>Secure Infrastructure:</strong> Hosted on Vercel and Google Cloud with automatic backups and disaster recovery</li>
+    </ul>
+
+    <h3>4.2 Your Responsibility</h3>
+    <p>Keep your password confidential, use a unique password, do not share your account credentials, and log out of your account on shared devices.</p>
+
+    <h3>4.3 Data Breach Notification</h3>
+    <p>In the event of a confirmed data breach affecting your personal information, we will notify you by email within 30 days, in compliance with UK GDPR and applicable laws.</p>
+
+    <hr>
+
+    <h2>5. Data Retention</h2>
+
+    <h3>5.1 How Long We Keep Your Data</h3>
+    <ul>
+        <li><strong>Active Plans:</strong> Retained for the duration of your use of the Service</li>
+        <li><strong>Completed/Archived Plans:</strong> Retained for 2 years for analytics and historical reference</li>
+        <li><strong>Account Data:</strong> Retained whilst your account is active</li>
+        <li><strong>Deleted Account Data:</strong> Permanently deleted within 30 days (backups may persist for up to 90 days)</li>
+        <li><strong>Payment/Billing Records:</strong> Retained for 7 years for tax and legal compliance</li>
+    </ul>
+
+    <h3>5.2 Automatic Deletion</h3>
+    <p>We automatically delete session cookies upon browser close, authentication tokens upon logout, and temporary processing files used for LLM calls (within 24 hours).</p>
+
+    <hr>
+
+    <h2>6. Third-Party Data Sharing</h2>
+
+    <h3>6.1 Anthropic (Claude API)</h3>
+    <p>Your brain dumps and planning data are sent to Anthropic's Claude API for natural language parsing and plan text generation. <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">Anthropic's Privacy Policy</a> applies to this data.</p>
+    <p>We do not opt your data into Anthropic's training datasets. We only send data necessary for immediate plan generation. API calls are processed server-side.</p>
+
+    <h3>6.2 Payment Processors</h3>
+    <p>Payment information is processed by <strong>Stripe</strong> (PCI-compliant). We do not store full credit card information.</p>
+
+    <h3>6.3 Push Notification Services</h3>
+    <p>We use Firebase Cloud Messaging (FCM) for Android and Apple Push Notification service (APNs) for iOS. Device tokens are stored securely and only used for notification delivery.</p>
+
+    <h3>6.4 Cloud Infrastructure</h3>
+    <p>Our Service is hosted on Vercel (frontend) and Google Cloud (backend), with security and privacy compliance from both providers.</p>
+
+    <h3>6.5 No Third-Party Marketing or Sales</h3>
+    <p>We <strong>do not</strong> sell, rent, or share your personal data with third parties for marketing or advertising purposes.</p>
+
+    <hr>
+
+    <h2>7. Your Privacy Rights</h2>
+
+    <h3>7.1 UK GDPR Rights (UK Users)</h3>
+    <p>If you are located in the UK, you have the following rights:</p>
+    <ul>
+        <li><strong>Right to Access:</strong> Request a copy of your personal data</li>
+        <li><strong>Right to Rectification:</strong> Correct inaccurate data</li>
+        <li><strong>Right to Erasure:</strong> Request deletion of your data</li>
+        <li><strong>Right to Restrict Processing:</strong> Limit how we use your data</li>
+        <li><strong>Right to Data Portability:</strong> Receive your data in a portable format</li>
+        <li><strong>Right to Object:</strong> Object to processing of your data</li>
+        <li><strong>Right to Withdraw Consent:</strong> Withdraw consent for data processing</li>
+        <li><strong>Right to Lodge a Complaint:</strong> File a complaint with the <a href="https://ico.org.uk" target="_blank" rel="noopener">ICO</a></li>
+    </ul>
+    <p>To exercise these rights, email <a href="mailto:support@planscope.app">support@planscope.app</a>. We will respond within 30 days.</p>
+
+    <h3>7.2 CCPA Rights (California Users)</h3>
+    <p>If you are a California resident, you have the right to know what personal information we collect, request deletion, opt out of sharing (we do not sell your data), and non-discrimination for exercising your rights.</p>
+    <p>To submit a request, email <a href="mailto:support@planscope.app">support@planscope.app</a>. We will respond within 45 days.</p>
+
+    <h3>7.3 Other Jurisdictions</h3>
+    <p>Depending on your location, you may have additional rights. We are committed to complying with all applicable privacy laws globally.</p>
+
+    <hr>
+
+    <h2>8. Children's Privacy</h2>
+    <p>Our Service is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If we discover that a child under 13 has provided us with personal information, we will delete that information and terminate the child's account immediately.</p>
+    <p>If you believe a child under 13 has provided information to us, please contact us at <a href="mailto:support@planscope.app">support@planscope.app</a>.</p>
+
+    <hr>
+
+    <h2>9. International Data Transfers</h2>
+    <p>Your data may be processed in countries other than where you reside. By using our Service, you consent to the transfer of your personal information to countries outside your country of residence. We implement appropriate safeguards, including Standard Contractual Clauses (SCCs), to protect your data during international transfers.</p>
+
+    <hr>
+
+    <h2>10. Cookies and Tracking Technologies</h2>
+
+    <h3>10.1 Cookies We Use</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Cookie Name</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>token</code></td>
+                <td>Authentication (JWT)</td>
+                <td>7 days</td>
+                <td>Persistent</td>
+            </tr>
+            <tr>
+                <td><code>session_id</code></td>
+                <td>Session management</td>
+                <td>Browser close</td>
+                <td>Session</td>
+            </tr>
+            <tr>
+                <td><code>preferences</code></td>
+                <td>UI preferences (theme, etc.)</td>
+                <td>1 year</td>
+                <td>Persistent</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>10.2 Your Cookie Choices</h3>
+    <p>You can disable cookies in your browser settings (but this may affect Service functionality), and you can delete cookies at any time. We respect the "Do Not Track" (DNT) signal.</p>
+
+    <hr>
+
+    <h2>11. Updates to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy periodically. For material changes, we will notify you by email. Your continued use of the Service constitutes acceptance of the updated policy.</p>
+
+    <hr>
+
+    <h2>12. Data Deletion and Account Termination</h2>
+
+    <h3>12.1 Delete Your Account</h3>
+    <p>You can request account deletion at any time by logging into your account and navigating to Settings &rarr; Delete Account, or by emailing <a href="mailto:support@planscope.app">support@planscope.app</a>.</p>
+
+    <h3>12.2 What Happens When You Delete Your Account</h3>
+    <ul>
+        <li>Your account is immediately deactivated</li>
+        <li>Your personal information is deleted within 30 days</li>
+        <li>Your plans and tasks are deleted within 30 days</li>
+        <li>We retain aggregated, non-identifiable data for analytics</li>
+        <li>Backups may persist for up to 90 days but will be overwritten</li>
+    </ul>
+
+    <hr>
+
+    <h2>13. Contact Us</h2>
+    <p>If you have questions about this Privacy Policy, your data, or our privacy practices, please contact:</p>
+    <p><strong>Email:</strong> <a href="mailto:support@planscope.app">support@planscope.app</a></p>
+    <p>We will respond to all enquiries within 10 business days.</p>
+
+    <hr>
+
+    <h2>14. Additional Information for Specific Jurisdictions</h2>
+    <p><strong>UK (GDPR-equivalent):</strong> UK GDPR protections apply. You can also file a complaint with the <a href="https://ico.org.uk" target="_blank" rel="noopener">Information Commissioner's Office (ICO)</a>.</p>
+    <p><strong>Australia (Privacy Act):</strong> The Privacy Act 1988 applies. You can complain to the Office of the Australian Information Commissioner (OAIC).</p>
+    <p><strong>Canada (PIPEDA):</strong> PIPEDA applies. You can lodge a complaint with the Privacy Commissioner of Canada.</p>
+
+    <hr>
+
+    <h2>15. Glossary</h2>
+    <ul>
+        <li><strong>Personal Data:</strong> Any information relating to an identified or identifiable individual</li>
+        <li><strong>Processing:</strong> Any operation performed on data (collection, use, storage, disclosure)</li>
+        <li><strong>Consent:</strong> Explicit agreement to the processing of your data</li>
+        <li><strong>Data Subject:</strong> The individual to whom personal data relates (you)</li>
+        <li><strong>Data Controller:</strong> The entity that determines the purposes and means of data processing (Planscope)</li>
+        <li><strong>Data Processor:</strong> An entity that processes data on behalf of the controller (e.g., Anthropic, Google Cloud)</li>
+    </ul>
+
+    <hr>
+
+    <p style="margin-top: 32px; font-size: 14px; color: var(--text-secondary);">By using Planscope, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy.</p>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                    <div style="font-size: 20px; font-weight: 600; color: white;">Planscope</div>
+                    <svg width="32" height="32" viewBox="440 -5 70 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.9; flex-shrink: 0;">
+                        <circle cx="469.678" cy="23.9982" r="24" fill="none" stroke="white" stroke-width="2.2"/>
+                        <path d="M464.201 26.2802L469.678 33.1267M469.678 33.1267L475.156 26.2802M469.678 33.1267V14.8694" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <g opacity="0.75">
+                            <path d="M466.027 24.9111L469.678 29.4754M469.678 29.4754L473.33 24.9111M469.678 29.4754V18.521" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <g opacity="0.5">
+                            <path d="M467.396 23.9982L469.678 26.2804M469.678 26.2804L471.961 23.9982M469.678 26.2804V21.7161" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </svg>
+                </div>
+                <p style="margin: 0; font-size: 14px;">Real plans for real people.<br>Built by someone who understands overwhelm.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#how">How it works</a>
+                <a href="index.html#pricing">Pricing</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="mailto:support@planscope.app">support@planscope.app</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Planscope. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
