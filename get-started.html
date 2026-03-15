@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - Planscope</title>
+    <meta name="description" content="Choose how to use Planscope. Available on web, iOS and Android.">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2E8B6A;
+            --primary-dark: #236B52;
+            --primary-light: #E8F5F0;
+            --bg: #FFFFFF;
+            --bg-subtle: #FAFAF9;
+            --bg-warm: #F8F6F2;
+            --border: #E8E8E8;
+            --border-light: #F0F0F0;
+            --text: #404040;
+            --text-secondary: #808080;
+            --text-muted: #A0A0A0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(180deg, var(--primary-light) 0%, var(--bg-warm) 40%, white 100%);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            margin-bottom: 40px;
+        }
+        .logo-text {
+            font-family: 'Geist', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        h1 {
+            font-family: 'Geist', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+        }
+
+        .platform-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .platform-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: white;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 200ms ease;
+        }
+        .platform-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(46, 139, 106, 0.1);
+            transform: translateY(-1px);
+        }
+        .platform-card.disabled {
+            opacity: 0.55;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .platform-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .platform-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .platform-info {
+            text-align: left;
+            flex: 1;
+        }
+        .platform-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .platform-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .platform-badge {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 4px 10px;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+        .platform-badge.soon {
+            color: var(--text-muted);
+            background: var(--bg-subtle);
+        }
+
+        .back-link {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 200ms ease;
+        }
+        .back-link:hover {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="/" class="logo">
+        <svg width="36" height="36" viewBox="443 -2 54 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M445.68 23.9982C445.68 10.7443 456.424 0 469.678 0C482.932 0 493.676 10.7443 493.676 23.9982C493.676 37.252 482.932 47.9963 469.678 47.9963C456.424 47.9963 445.68 37.252 445.68 23.9982Z" fill="white"/>
+            <path d="M445.68 23.9982C445.68 10.7443 456.424 0 469.678 0C482.932 0 493.676 10.7443 493.676 23.9982C493.676 37.252 482.932 47.9963 469.678 47.9963C456.424 47.9963 445.68 37.252 445.68 23.9982Z" fill="none" stroke="#2E8B6A" stroke-width="2.4"/>
+            <path d="M464.201 26.2802L469.678 33.1267M469.678 33.1267L475.156 26.2802M469.678 33.1267V14.8694" stroke="#2E8B6A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <g opacity="0.75"><path d="M466.027 24.9111L469.678 29.4754M469.678 29.4754L473.33 24.9111M469.678 29.4754V18.521" stroke="#2E8B6A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g opacity="0.5"><path d="M467.396 23.9982L469.678 26.2804M469.678 26.2804L471.961 23.9982M469.678 26.2804V21.7161" stroke="#2E8B6A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </svg>
+        <span class="logo-text">Planscope</span>
+    </a>
+
+    <h1>Choose your platform</h1>
+    <p class="subtitle">Planscope works everywhere. Pick how you'd like to get started.</p>
+
+    <div class="platform-list">
+        <a href="https://app.planscope.app" class="platform-card">
+            <div class="platform-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2E8B6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+            </div>
+            <div class="platform-info">
+                <div class="platform-name">Planscope Web</div>
+                <div class="platform-desc">Open in your browser. Works on any device.</div>
+            </div>
+            <span class="platform-badge">Open</span>
+        </a>
+
+        <div class="platform-card disabled">
+            <div class="platform-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2E8B6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+            </div>
+            <div class="platform-info">
+                <div class="platform-name">iOS</div>
+                <div class="platform-desc">iPhone and iPad app</div>
+            </div>
+            <span class="platform-badge soon">Coming soon</span>
+        </div>
+
+        <div class="platform-card disabled">
+            <div class="platform-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2E8B6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+            </div>
+            <div class="platform-info">
+                <div class="platform-name">Android</div>
+                <div class="platform-desc">Google Play app</div>
+            </div>
+            <span class="platform-badge soon">Coming soon</span>
+        </div>
+    </div>
+
+    <a href="/" class="back-link">&larr; Back to planscope.app</a>
+</div>
+
+</body>
+</html>
