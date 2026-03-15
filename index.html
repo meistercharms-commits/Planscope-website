@@ -271,6 +271,14 @@
         }
         .hero h1 span { color: var(--primary); }
 
+        .hero-hook {
+            font-size: 15px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 16px;
+            letter-spacing: 0.01em;
+        }
+
         .hero-subtitle {
             font-size: 18px;
             color: var(--text-secondary);
@@ -656,6 +664,42 @@
         }
         .feature-card p { font-size: 14px; line-height: 1.6; }
 
+        /* ─── Journey Spotlight ─── */
+        .journey-spotlight {
+            background: var(--bg-warm);
+            padding: 80px 0;
+        }
+
+        .journey-spotlight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .journey-spotlight-text h2 {
+            margin-bottom: 16px;
+            color: #4A9B8E;
+        }
+
+        .journey-spotlight-text p {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .journey-skyline-preview {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 4px;
+            height: 120px;
+            padding: 20px 24px;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
         /* ─── How It Works ─── */
         .how-it-works {
             background: var(--bg-subtle);
@@ -999,7 +1043,8 @@
             .features-grid,
             .built-for-grid,
             .pricing-grid,
-            .proof-grid { grid-template-columns: 1fr; }
+            .proof-grid,
+            .journey-spotlight-grid { grid-template-columns: 1fr; }
 
             .footer-content { grid-template-columns: 1fr 1fr; }
             .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
@@ -1020,7 +1065,8 @@
         }
         .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
         .hero-text > *:nth-child(2) { animation-delay: 0.2s; }
-        .hero-text > *:nth-child(3) { animation-delay: 0.35s; }
+        .hero-text > *:nth-child(3) { animation-delay: 0.3s; }
+        .hero-text > *:nth-child(4) { animation-delay: 0.4s; }
 
         .demo-card {
             opacity: 0;
@@ -1077,6 +1123,7 @@
         <div class="hero-grid">
             <div class="hero-text">
                 <h1>Your week,<br><span>planned.</span></h1>
+                <p class="hero-hook">Software for people who are already carrying enough.</p>
                 <p class="hero-subtitle">
                     Get everything out of your head. AI helps sort it into a realistic plan that fits your time and energy.
                 </p>
@@ -1137,8 +1184,8 @@
                         <div class="demo-task" id="task2">
                             <div class="demo-check"></div>
                             <div>
-                                <div class="demo-task-text">Call client about scope change</div>
-                                <div class="demo-task-context">Blocks other work, quick win</div>
+                                <div class="demo-task-text">Book that GP appointment</div>
+                                <div class="demo-task-context">Been putting it off, 5-minute call</div>
                             </div>
                         </div>
                         <div class="demo-task" id="task3">
@@ -1171,15 +1218,15 @@
         <div class="proof-grid reveal-stagger">
             <div class="proof-card">
                 <p class="proof-quote">"I genuinely can't live without it now. This is the app I've been waiting for."</p>
-                <div class="proof-name">Early user</div>
+                <div class="proof-name">Sarah, early user</div>
             </div>
             <div class="proof-card">
                 <p class="proof-quote">"I'm impressed. The journey page and night mode are beautiful. It makes planning feel like something I actually want to do."</p>
-                <div class="proof-name">Early user</div>
+                <div class="proof-name">James, early user</div>
             </div>
             <div class="proof-card">
                 <p class="proof-quote">"It's a really good app. I've been using it properly and it's changed how I think about my week."</p>
-                <div class="proof-name">Beta tester</div>
+                <div class="proof-name">Rachel, beta tester</div>
             </div>
         </div>
     </div>
@@ -1190,7 +1237,7 @@
     <div class="container">
         <h2 class="reveal">Planning that actually works</h2>
         <p class="section-subtitle reveal">
-            Built for people who want clarity without the overhead.
+            No streaks. No guilt. Just what fits this week.
         </p>
 
         <div class="features-grid reveal-stagger reveal">
@@ -1228,6 +1275,33 @@
                 <div class="feature-icon"><img src="timer.svg" alt="Timer icon"/></div>
                 <h3>Two minutes to clarity</h3>
                 <p>Brain dump, set constraints, get a plan. Takes 2 minutes.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Journey Skyline -->
+<section class="journey-spotlight">
+    <div class="container">
+        <div class="journey-spotlight-grid reveal">
+            <div class="journey-spotlight-text">
+                <h2>See the city your plans built</h2>
+                <p>Every plan you complete adds a building to your skyline. Over weeks and months, you can look back and see a city that only exists because you kept showing up.</p>
+                <p>No pressure to maintain a streak. Just a quiet record of the weeks you planned, the tasks you finished, and the patterns you started to notice.</p>
+            </div>
+            <div class="journey-spotlight-visual">
+                <div class="journey-skyline-preview">
+                    <div class="sky-building risen" style="width:12px; height:28px;"></div>
+                    <div class="sky-building has-windows risen" style="width:18px; height:52px;"></div>
+                    <div class="sky-building risen" style="width:10px; height:22px;"></div>
+                    <div class="sky-building has-windows risen" style="width:22px; height:68px;"></div>
+                    <div class="sky-building risen" style="width:14px; height:38px;"></div>
+                    <div class="sky-building has-windows risen" style="width:20px; height:80px;"></div>
+                    <div class="sky-building risen" style="width:12px; height:44px;"></div>
+                    <div class="sky-building has-windows risen" style="width:18px; height:56px;"></div>
+                    <div class="sky-building risen" style="width:14px; height:32px;"></div>
+                    <div class="sky-building has-windows risen" style="width:24px; height:72px;"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -1293,8 +1367,8 @@
 
             <div class="persona-card">
                 <div class="persona-icon"><img src="smart_thinking.svg" alt="Smart thinking icon"/></div>
-                <h3>Neurodivergent planners</h3>
-                <p>When decision fatigue hits, the last thing you need is more structure. Planscope keeps it simple so you can just start.</p>
+                <h3>People who've tried every system</h3>
+                <p>Notion, Todoist, bullet journals, sticky notes. If nothing has stuck, it might be because the system expected too much. Planscope doesn't.</p>
             </div>
         </div>
     </div>
@@ -1338,12 +1412,11 @@
             </div>
 
             <div class="pricing-card">
-                <div class="pricing-badge" style="background: var(--secondary);">Power Users</div>
                 <div class="pricing-name">Pro Plus</div>
                 <div class="pricing-price">&pound;14.99</div>
                 <div class="pricing-period">per month &bull; or &pound;149/year</div>
                 <ul class="pricing-features">
-                    <li>Plan everything, unlimited possibilities</li>
+                    <li>Unlimited plans, no caps</li>
                     <li>Run separate plans for work, personal, and side projects</li>
                     <li>See how your completion trends change over time</li>
                     <li>For people juggling it all</li>
@@ -1406,7 +1479,7 @@
                         </g>
                     </svg>
                 </div>
-                <p style="margin: 0; font-size: 14px;">Real plans for real people.<br>Built by someone who understands overwhelm.</p>
+                <p style="margin: 0; font-size: 14px;">Real plans for real people.<br>Built by someone who needed this app first.</p>
             </div>
 
             <div class="footer-section">
@@ -1520,7 +1593,7 @@
     var tasks = ['task1','task2','task3'];
     var parked = ['parked1'];
 
-    var demoText = "Finish the Q2 proposal. Chase the client about scope. Code review for the team. Update project docs. Try to exercise this week. Sort out that invoice...";
+    var demoText = "Finish the Q2 proposal. Book that GP appointment I keep putting off. Code review for the team. Update project docs. Try to exercise this week. Sort out that invoice...";
 
     var timeouts = [];
 
