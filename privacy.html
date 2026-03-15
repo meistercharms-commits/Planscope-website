@@ -235,7 +235,7 @@
 <div class="legal-hero">
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p>Effective 25 February 2025 &middot; Last updated 8 March 2026</p>
+        <p>Effective 25 February 2025 &middot; Last updated 13 March 2026</p>
     </div>
 </div>
 
@@ -267,21 +267,25 @@
         <li>Task lists and completion status</li>
         <li>Constraints you select (time availability, energy level, focus area)</li>
         <li>Any edits or modifications you make to tasks</li>
-        <li>Multiple planning contexts (Work, Personal, Side Project, etc.)</li>
         <li>Feedback or support requests</li>
     </ul>
 
-    <p><strong>Team Sharing (Pro Plus feature):</strong></p>
+    <p><strong>Plan Sharing (Pro Plus feature):</strong></p>
     <ul>
-        <li>Email addresses of team members you invite</li>
-        <li>Access levels and permissions for shared plans</li>
-        <li>Team member activity on shared plans</li>
+        <li>Email addresses of people you share plans with</li>
+        <li>Membership role (editor) for shared plans</li>
     </ul>
 
-    <p><strong>Push Notifications:</strong></p>
+    <p><strong>Mood and Wellbeing Data:</strong></p>
+    <ul>
+        <li>Mood selections (e.g. rough, tired, ok, good, swamped) from periodic check-ins, stored locally on your device</li>
+        <li>Emotional context detected during plan generation (anxiety signals, burnout indicators, overwhelm level), stored alongside your plan data</li>
+    </ul>
+
+    <p><strong>Notifications:</strong></p>
     <ul>
         <li>Notification preferences and settings</li>
-        <li>Device tokens for iOS and Android devices (for push notification delivery)</li>
+        <li>Notifications are delivered locally on your device via the native app; we do not use cloud-based push notification services</li>
     </ul>
 
     <p><strong>Payment Information (if applicable):</strong></p>
@@ -298,7 +302,7 @@
     <p><strong>Usage Data:</strong> IP address, browser type and version, operating system, pages or features you access, time and date of your visits, time spent on pages, and links you click.</p>
     <p><strong>Device Information:</strong> Device type, device identifiers, mobile network information, operating system version, and app installation source.</p>
     <p><strong>Cookies and Tracking Technologies:</strong> Session cookies, persistent cookies, and local storage for authentication tokens. We use cookies for authentication and remembering your preferences.</p>
-    <p>We do <strong>not</strong> use third-party analytics trackers, heatmaps, session recordings, or invasive tracking technologies.</p>
+    <p><strong>Analytics:</strong> We use Firebase Analytics (Google) to measure feature usage and understand how people interact with the Service. This collects anonymised event data such as page views and feature interactions. We do <strong>not</strong> use heatmaps, session recordings, or invasive tracking technologies.</p>
 
     <h3>2.3 Information from Third Parties</h3>
     <p>If you log in via OAuth (Google, Apple), we receive your email address and basic profile information. We also receive payment information from payment processors (Stripe) and aggregate usage data (never personally identifiable).</p>
@@ -309,9 +313,9 @@
     <p>We use the information we collect to:</p>
     <ol>
         <li><strong>Provide and Improve the Service:</strong> Create and maintain your account, deliver planning features, debug and fix technical issues, and monitor performance.</li>
-        <li><strong>Generate AI Plans:</strong> Parse your brain dumps using Claude API, score and select tasks based on your constraints, and generate human-friendly descriptions. Your data is sent to Anthropic's API for LLM processing (see section 6).</li>
-        <li><strong>Team Collaboration (Pro Plus):</strong> Share plans with team members, manage access and permissions, and track activity.</li>
-        <li><strong>Push Notifications:</strong> Send plan-ready, daily check-in, and celebration notifications. Store device tokens and customise preferences per user.</li>
+        <li><strong>Generate AI Plans:</strong> Parse your brain dumps using Claude API, detect emotional context (such as anxiety or burnout signals) to tailor plan recommendations, score and select tasks based on your constraints, and generate human-friendly descriptions. Your data is sent to Anthropic's API for LLM processing (see section 6).</li>
+        <li><strong>Plan Sharing (Pro Plus):</strong> Share plans with other Planscope users and manage membership.</li>
+        <li><strong>Notifications:</strong> Deliver local notifications on your device for check-ins, celebrations, and reminders based on your preferences.</li>
         <li><strong>Customer Service:</strong> Respond to your enquiries and support requests, and send service-related announcements.</li>
         <li><strong>Legal and Safety:</strong> Comply with applicable laws, protect against fraud, enforce our Terms of Use, and process refund requests.</li>
         <li><strong>Aggregated Analytics:</strong> Measure feature usage, understand user behaviour patterns, and improve the product experience (non-personally identifiable).</li>
@@ -326,8 +330,8 @@
     <ul>
         <li><strong>Encryption in Transit:</strong> All data transmitted uses HTTPS (TLS 1.2+)</li>
         <li><strong>Encryption at Rest:</strong> Sensitive data is encrypted in our database</li>
-        <li><strong>Password Security:</strong> Passwords are hashed using bcrypt with a high salt cost</li>
-        <li><strong>Access Controls:</strong> Only authorised employees can access data, on a need-to-know basis</li>
+        <li><strong>Password Security:</strong> Passwords are managed by Firebase Authentication using industry-standard hashing</li>
+        <li><strong>Access Controls:</strong> Access to user data is restricted to authorised personnel on a need-to-know basis</li>
         <li><strong>Secure Infrastructure:</strong> Hosted on Vercel and Google Cloud with automatic backups and disaster recovery</li>
     </ul>
 
@@ -364,13 +368,16 @@
     <h3>6.2 Payment Processors</h3>
     <p>Payment information is processed by <strong>Stripe</strong> (PCI-compliant). We do not store full credit card information.</p>
 
-    <h3>6.3 Push Notification Services</h3>
-    <p>We use Firebase Cloud Messaging (FCM) for Android and Apple Push Notification service (APNs) for iOS. Device tokens are stored securely and only used for notification delivery.</p>
+    <h3>6.3 Notifications</h3>
+    <p>Notifications are delivered locally on your device via the native mobile app. We do not use cloud-based push notification services (such as Firebase Cloud Messaging or Apple Push Notification service). Your notification preferences are stored in our database to sync across devices.</p>
 
-    <h3>6.4 Cloud Infrastructure</h3>
+    <h3>6.4 Analytics</h3>
+    <p>We use <strong>Firebase Analytics</strong> (Google) to collect anonymised usage data such as page views and feature interactions. This helps us understand how people use the Service and improve the product. We do not use this data for advertising. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy Policy</a> applies.</p>
+
+    <h3>6.5 Cloud Infrastructure</h3>
     <p>Our Service is hosted on Vercel (frontend) and Google Cloud (backend), with security and privacy compliance from both providers.</p>
 
-    <h3>6.5 No Third-Party Marketing or Sales</h3>
+    <h3>6.6 No Third-Party Marketing or Sales</h3>
     <p>We <strong>do not</strong> sell, rent, or share your personal data with third parties for marketing or advertising purposes.</p>
 
     <hr>
@@ -425,27 +432,18 @@
         </thead>
         <tbody>
             <tr>
-                <td><code>token</code></td>
-                <td>Authentication (JWT)</td>
-                <td>7 days</td>
-                <td>Persistent</td>
-            </tr>
-            <tr>
-                <td><code>session_id</code></td>
-                <td>Session management</td>
-                <td>Browser close</td>
-                <td>Session</td>
-            </tr>
-            <tr>
-                <td><code>preferences</code></td>
-                <td>UI preferences (theme, etc.)</td>
-                <td>1 year</td>
-                <td>Persistent</td>
+                <td><code>__session</code></td>
+                <td>Authentication (session cookie)</td>
+                <td>5 days</td>
+                <td>Persistent (httpOnly, secure)</td>
             </tr>
         </tbody>
     </table>
 
-    <h3>10.2 Your Cookie Choices</h3>
+    <h3>10.2 Local Storage</h3>
+    <p>We also use your browser's local storage and session storage to store preferences (such as mood check-in data and display settings), temporary data during plan generation, and authentication state. This data remains on your device and is not transmitted to our servers unless required to provide the Service.</p>
+
+    <h3>10.3 Your Cookie Choices</h3>
     <p>You can disable cookies in your browser settings (but this may affect Service functionality), and you can delete cookies at any time. We respect the "Do Not Track" (DNT) signal.</p>
 
     <hr>
