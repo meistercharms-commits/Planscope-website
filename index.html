@@ -691,10 +691,21 @@
         .journey-skyline-mockup {
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            box-shadow: 0 4px 24px rgba(46,139,106,0.15), 0 8px 40px rgba(46,139,106,0.08);
             position: relative;
             max-width: 520px;
             width: 100%;
+            margin: 0 auto;
+            background: #f8f4ec;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+        .journey-skyline-mockup:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(46,139,106,0.2), 0 16px 56px rgba(46,139,106,0.12);
+        }
+        .journey-spotlight-visual {
+            overflow: visible;
+            padding-bottom: 8px;
         }
         .jsm-sky {
             background: linear-gradient(180deg, #c2d6e8 0%, #dde8ef 40%, #f0ece2 80%, #f8f4ec 100%);
@@ -705,6 +716,7 @@
             position: relative;
             z-index: 2;
             padding: 14px 18px 6px;
+            text-align: center;
         }
         .jsm-title {
             font-family: 'Geist', -apple-system, sans-serif;
@@ -720,10 +732,11 @@
             display: flex;
             align-items: flex-end;
             gap: 0;
-            padding: 0 20px;
+            padding: 0 12px;
             height: 140px;
             position: relative;
             z-index: 2;
+            justify-content: center;
         }
         .jsm-date-group {
             display: flex;
@@ -750,6 +763,19 @@
         .jsm-b {
             border-radius: 2px 2px 0 0;
             position: relative;
+            cursor: default;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .jsm-buildings.risen .jsm-b {
+            transform: translateY(0);
+            opacity: 1;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.3s ease;
+        }
+        .jsm-buildings.risen .jsm-b:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.08);
         }
         .jsm-b.weekly { background: linear-gradient(180deg, #c8d0e5 0%, #b0b8d0 100%); }
         .jsm-b.daily { background: linear-gradient(180deg, #e2d4ac 0%, #cec092 100%); }
@@ -819,10 +845,11 @@
             z-index: 2;
             height: 5px;
             background: linear-gradient(180deg, #d8d0c0 0%, #cec5b5 100%);
+            margin-top: -1px;
         }
         .jsm-water {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             height: 32px;
             overflow: hidden;
         }
@@ -844,13 +871,14 @@
         /* Stats footer */
         .jsm-footer {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             padding: 6px 18px 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 28px;
             background: #f8f4ec;
+            margin-top: -1px;
         }
         .jsm-stat { text-align: center; }
         .jsm-stat-num {
@@ -902,6 +930,9 @@
         }
         .jsm-toggle .jsm-moon-icon { display: block; }
         /* Night mode overrides */
+        .journey-skyline-mockup.night {
+            background: #0a0e1a;
+        }
         .journey-skyline-mockup.night .jsm-sky {
             background: linear-gradient(180deg, #0a0e1a 0%, #111827 25%, #1a2540 50%, #243352 70%, #354d6b 100%);
         }
@@ -930,7 +961,7 @@
             background: linear-gradient(180deg, #141e2e 0%, #0e1520 100%);
         }
         .journey-skyline-mockup.night .jsm-water-bg {
-            background: linear-gradient(180deg, rgba(20,40,60,0.7) 0%, rgba(10,25,45,0.95) 100%);
+            background: linear-gradient(180deg, #1a2840 0%, #0e1520 100%);
         }
         .journey-skyline-mockup.night .jsm-water-ripple {
             background: repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(255,238,187,0.02) 4px, rgba(255,238,187,0.02) 5px);
@@ -1067,7 +1098,7 @@
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 3px;
+            gap: 2px;
         }
         .jsm-chimney {
             display: flex;
@@ -1075,11 +1106,11 @@
             align-items: center;
         }
         .jsm-chimney-cap {
-            width: 6px; height: 2px;
+            width: 5px; height: 1.5px;
             border-radius: 1px 1px 0 0;
         }
         .jsm-chimney-body {
-            width: 4px; height: 6px;
+            width: 3px; height: 5px;
         }
         .jsm-b.weekly .jsm-chimney-cap { background: #8898c0; }
         .jsm-b.weekly .jsm-chimney-body { background: #7080a0; }
@@ -1941,7 +1972,7 @@
             <div class="persona-card">
                 <div class="persona-icon"><img src="smart_thinking.svg" alt="Smart thinking icon"/></div>
                 <h3>People who've tried every system</h3>
-                <p>Notion, Todoist, bullet journals, sticky notes. If nothing has stuck, it might be because the system expected too much. Planscope doesn't.</p>
+                <p>Apps, journals, sticky notes. If nothing has stuck, it might be because the system expected too much. Planscope doesn't.</p>
             </div>
         </div>
     </div>
@@ -2149,6 +2180,29 @@
         });
     }, { threshold: 0.3 });
     observer.observe(skyline);
+})();
+
+/* ─── Journey Skyline Rise ─── */
+(function() {
+    var container = document.querySelector('.jsm-buildings');
+    if (!container) return;
+    var buildings = container.querySelectorAll('.jsm-b');
+    buildings.forEach(function(b, i) {
+        b.style.transitionDelay = (i * 0.04) + 's';
+    });
+    if (!('IntersectionObserver' in window)) {
+        container.classList.add('risen');
+        return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                container.classList.add('risen');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    observer.observe(container);
 })();
 
 /* ─── Interactive Hero Demo ─── */
