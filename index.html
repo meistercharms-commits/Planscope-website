@@ -705,7 +705,7 @@
         }
         .journey-spotlight-visual {
             overflow: visible;
-            padding-bottom: 8px;
+            padding: 8px 0 16px;
         }
         .jsm-sky {
             background: linear-gradient(180deg, #c2d6e8 0%, #dde8ef 40%, #f0ece2 80%, #f8f4ec 100%);
@@ -737,6 +737,7 @@
             position: relative;
             z-index: 2;
             justify-content: center;
+            overflow: hidden;
         }
         .jsm-date-group {
             display: flex;
@@ -1466,6 +1467,13 @@
             .pricing-grid,
             .proof-grid,
             .journey-spotlight-grid { grid-template-columns: 1fr; }
+
+            .journey-skyline-mockup {
+                max-width: calc(100vw - 40px);
+            }
+            .jsm-buildings {
+                padding: 0 4px;
+            }
 
             .footer-content { grid-template-columns: 1fr 1fr; }
             .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
