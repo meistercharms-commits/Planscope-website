@@ -2213,6 +2213,40 @@
     observer.observe(container);
 })();
 
+/* ─── Skyline Auto Day/Night Cycle ─── */
+(function() {
+    var mockup = document.getElementById('jsmMockup');
+    if (!mockup) return;
+    var interval = null;
+    function startCycle() {
+        interval = setInterval(function() {
+            mockup.classList.toggle('night');
+        }, 10000);
+    }
+    // Start cycling when card scrolls into view
+    if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    startCycle();
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        obs.observe(mockup);
+    } else {
+        startCycle();
+    }
+    // Manual toggle resets the timer
+    var toggle = mockup.querySelector('.jsm-toggle');
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            clearInterval(interval);
+            startCycle();
+        });
+    }
+})();
+
 /* ─── Interactive Hero Demo ─── */
 (function() {
     var textarea = document.getElementById('demoTextarea');
